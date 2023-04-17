@@ -55,49 +55,19 @@ export const calculateBonus = (
     } else {
       switch (bonusType) {
         case BONUS_TYPES.NGUOI_XU_LY:
-          if (employees[index].bonus.depSoan === undefined) {
-            employees[index].bonus.depSoan = totalDep;
-          } else {
-            employees[index].bonus.depSoan! += totalDep;
-          }
-
-          if (employees[index].bonus.bonusDepSoan === undefined) {
-            employees[index].bonus.bonusDepSoan =
-              (DON_GIA.SOAN / names.length) * totalDep;
-          } else {
-            employees[index].bonus.bonusDepSoan! +=
-              (DON_GIA.SOAN / names.length) * totalDep;
-          }
+          employees[index].bonus.depSoan! += totalDep;
+          employees[index].bonus.bonusDepSoan! +=
+            (DON_GIA.SOAN / names.length) * totalDep;
           break;
         case BONUS_TYPES.PHU_XE:
-          if (employees[index].bonus.phuXe === undefined) {
-            employees[index].bonus.phuXe = totalDep;
-          } else {
-            employees[index].bonus.phuXe! += totalDep;
-          }
-
-          if (employees[index].bonus.bonusPhuXe === undefined) {
-            employees[index].bonus.bonusPhuXe =
-              (DON_GIA.PHU / names.length) * totalDep;
-          } else {
-            employees[index].bonus.bonusPhuXe! +=
-              (DON_GIA.PHU / names.length) * totalDep;
-          }
+          employees[index].bonus.phuXe! += totalDep;
+          employees[index].bonus.bonusPhuXe! +=
+            (DON_GIA.PHU / names.length) * totalDep;
           break;
         default:
-          if (employees[index].bonus.laiXe === undefined) {
-            employees[index].bonus.laiXe = totalDep;
-          } else {
-            employees[index].bonus.laiXe! += totalDep;
-          }
-
-          if (employees[index].bonus.bonusLaiXe === undefined) {
-            employees[index].bonus.bonusLaiXe =
-              (DON_GIA.LAI / names.length) * totalDep;
-          } else {
-            employees[index].bonus.bonusLaiXe! +=
-              (DON_GIA.LAI / names.length) * totalDep;
-          }
+          employees[index].bonus.laiXe! += totalDep;
+          employees[index].bonus.bonusLaiXe! +=
+            (DON_GIA.LAI / names.length) * totalDep;
       }
     }
   }
