@@ -21,9 +21,11 @@ export const calculateBonus = (
   const names = allNames.split(',');
   for (const name of names) {
     // check if employee already in list
-    const index = employees.findIndex((employee) => employee.name === name);
+    let employeeIndex = employees.findIndex(
+      (employee) => employee.name === name
+    );
     // if not in list
-    if (index === -1) {
+    if (employeeIndex === -1) {
       const arrayLength = employees.push({
         name,
         bonus: {
@@ -35,40 +37,23 @@ export const calculateBonus = (
           bonusPhuXe: 0,
         },
       });
-
-      switch (bonusType) {
-        case BONUS_TYPES.NGUOI_XU_LY:
-          employees[arrayLength - 1].bonus.depSoan = totalDep;
-          employees[arrayLength - 1].bonus.bonusDepSoan =
-            (DON_GIA.SOAN / names.length) * totalDep;
-          break;
-        case BONUS_TYPES.PHU_XE:
-          employees[arrayLength - 1].bonus.phuXe = totalDep;
-          employees[arrayLength - 1].bonus.bonusPhuXe =
-            (DON_GIA.PHU / names.length) * totalDep;
-          break;
-        default:
-          employees[arrayLength - 1].bonus.laiXe = totalDep;
-          employees[arrayLength - 1].bonus.bonusLaiXe =
-            (DON_GIA.LAI / names.length) * totalDep;
-      }
-    } else {
-      switch (bonusType) {
-        case BONUS_TYPES.NGUOI_XU_LY:
-          employees[index].bonus.depSoan! += totalDep;
-          employees[index].bonus.bonusDepSoan! +=
-            (DON_GIA.SOAN / names.length) * totalDep;
-          break;
-        case BONUS_TYPES.PHU_XE:
-          employees[index].bonus.phuXe! += totalDep;
-          employees[index].bonus.bonusPhuXe! +=
-            (DON_GIA.PHU / names.length) * totalDep;
-          break;
-        default:
-          employees[index].bonus.laiXe! += totalDep;
-          employees[index].bonus.bonusLaiXe! +=
-            (DON_GIA.LAI / names.length) * totalDep;
-      }
+      employeeIndex = arrayLength - 1;
+    }
+    switch (bonusType) {
+      case BONUS_TYPES.NGUOI_XU_LY:
+        employees[employeeIndex].bonus.depSoan += totalDep;
+        employees[employeeIndex].bonus.bonusDepSoan +=
+          (DON_GIA.SOAN / names.length) * totalDep;
+        break;
+      case BONUS_TYPES.PHU_XE:
+        employees[employeeIndex].bonus.phuXe += totalDep;
+        employees[employeeIndex].bonus.bonusPhuXe +=
+          (DON_GIA.PHU / names.length) * totalDep;
+        break;
+      default:
+        employees[employeeIndex].bonus.laiXe += totalDep;
+        employees[employeeIndex].bonus.bonusLaiXe +=
+          (DON_GIA.LAI / names.length) * totalDep;
     }
   }
 };
