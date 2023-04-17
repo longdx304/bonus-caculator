@@ -13,7 +13,7 @@ type Bonus = {
 
 export type Employee = {
   name: string;
-  bonus: Partial<Bonus>;
+  bonus: Bonus;
 };
 
 type Data = {
@@ -97,22 +97,40 @@ export default function Home() {
       <div>
         <h2>Danh sách thưởng</h2>
         {employees.map((employee) => {
+          const totalBonus =
+            employee.bonus.bonusPhuXe +
+            employee.bonus.bonusLaiXe +
+            employee.bonus.bonusDepSoan;
           return (
             <li key={employee.name}>
               <h3>{employee.name}</h3>
-              <p>Số lượng dép soạn chính xác (đôi): {employee.bonus.depSoan}</p>
-              <p>Số lượng dép lái xe chính xác (đôi): {employee.bonus.laiXe}</p>
-              <p>Số lượng dép phụ xe chính xác (đôi): {employee.bonus.phuXe}</p>
               <p>
-                Thưởng soạn hàng chính xác (vnd): {employee.bonus.bonusDepSoan}
+                Số lượng dép soạn chính xác (đôi):{' '}
+                {employee.bonus.depSoan.toLocaleString('en-US')}
+              </p>
+              <p>
+                Số lượng dép lái xe chính xác (đôi):{' '}
+                {employee.bonus.laiXe.toLocaleString('en-US')}
+              </p>
+              <p>
+                Số lượng dép phụ xe chính xác (đôi):{' '}
+                {employee.bonus.phuXe.toLocaleString('en-US')}
+              </p>
+              <p>
+                Thưởng soạn hàng chính xác (vnd):{' '}
+                {employee.bonus.bonusDepSoan.toLocaleString('en-US')}
               </p>
               <p>
                 Thưởng lái xe tải giao hàng hiệu quả (vnd):
-                {employee.bonus.bonusLaiXe}
+                {employee.bonus.bonusLaiXe.toLocaleString('en-US')}
               </p>
               <p>
                 Thưởng phụ xe tải giao hàng hiệu quả (vnd):
-                {employee.bonus.bonusPhuXe}
+                {employee.bonus.bonusPhuXe.toLocaleString('en-US')}
+              </p>
+              <p>
+                Tổng thưởng (vnd):
+                {totalBonus.toLocaleString('en-US')}
               </p>
             </li>
           );

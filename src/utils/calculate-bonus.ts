@@ -24,7 +24,17 @@ export const calculateBonus = (
     const index = employees.findIndex((employee) => employee.name === name);
     // if not in list
     if (index === -1) {
-      const arrayLength = employees.push({ name, bonus: {} });
+      const arrayLength = employees.push({
+        name,
+        bonus: {
+          depSoan: 0,
+          laiXe: 0,
+          phuXe: 0,
+          bonusDepSoan: 0,
+          bonusLaiXe: 0,
+          bonusPhuXe: 0,
+        },
+      });
 
       switch (bonusType) {
         case BONUS_TYPES.NGUOI_XU_LY:
