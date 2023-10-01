@@ -2,8 +2,8 @@ import { Employee } from '@/pages';
 
 enum DON_GIA {
   SOAN = 24,
-  LAI = 16,
-  PHU = 8,
+  LAI = 12,
+  PHU = 12,
 }
 
 export enum BONUS_TYPES {
@@ -19,7 +19,8 @@ export const calculateBonus = (
   employees: Employee[]
 ) => {
   const names = allNames.split(',');
-  for (const name of names) {
+  for (const unTrimname of names) {
+    const name = unTrimname.trim();
     // check if employee already in list
     let employeeIndex = employees.findIndex(
       (employee) => employee.name === name
